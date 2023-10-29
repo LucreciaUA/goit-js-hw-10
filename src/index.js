@@ -22,7 +22,8 @@ select.addEventListener('change', onSelect)
 const catArr = [];
 
 fetchBreeds()
-    .then(data => {
+    .then(
+        data => {
         data.map(element => {
             catArr.push({ text: element.name, value: element.id })
             console.log(catArr)
@@ -33,14 +34,11 @@ fetchBreeds()
 
         });
         
-        
         selector.setData(catArr)
-        //selector.insertAdjacentHTML('afterbegin', '<option value="" selected>None</option>');
-       // selector.destroy()
+        loader.classList.remove('is-hidden')
         select.classList.remove('is-hidden')
         cat.classList.add('is-hidden')
-    })
-    
+        })
 
     .catch(newError)
 
@@ -49,6 +47,7 @@ fetchBreeds()
 function onSelect(evt) {
     cat.classList.add('is-hidden');
     loader.classList.remove('is-hidden')
+    
     cat.innerHTML = '';
     const breadID = evt.currentTarget.value
     
