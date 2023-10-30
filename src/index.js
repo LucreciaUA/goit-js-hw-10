@@ -20,18 +20,30 @@ function list() {
     fetchBreeds()
         .then(
             data => {
-                data.map(element => {
-                    catArr.push({ text: element.name, value: element.id })
-
-                });
+                //data.map(element => {
+                //    catArr.push({ text: element.name, value: element.id })
+            //});
+        selector.innerHTML = catList(data)
                 new SlimSelect({
                     select: '.breed-select',
-                    data: catArr
+
+                    settings: {
+                placeholderText: 'Just chose a cat...',
+            },
+
                 });
-                // selector.setData(catArr)
+                //selector.setData(catArr)
                 loader.classList.add('is-hidden')
+                
+                
             })
         .catch(newError);
+}
+
+function catList(data) {
+    const markup = data.map(({ name, id }) => { return `<option value="${id}">${name}</option>` })
+    markup.unshift(`<option data-placeholder="true"></option>`);
+  return markup.join('');
 }
 
 selector.addEventListener('change', onSelect);
