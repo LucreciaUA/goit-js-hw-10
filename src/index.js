@@ -9,7 +9,7 @@ const loader = document.querySelector('.loader');
 const error = document.querySelector('.error');
 const cat = document.querySelector('.cat-info')
 
-
+selector.classList.add('is-hidden');
 error.classList.add('is-hidden');
 cat.classList.add('is-hidden');
 
@@ -34,6 +34,7 @@ function list() {
                 });
                 //selector.setData(catArr)
                 loader.classList.add('is-hidden')
+                selector.classList.remove('is-hidden')
                 
                 
             })
